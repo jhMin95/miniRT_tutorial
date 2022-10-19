@@ -38,8 +38,15 @@ t_color3	ray_color(t_ray	*r)
 
 t_color3	ray_spere_color(t_ray *ray, t_sphere *sphere)
 {
-	if (hit_sphere(sphere, ray))
-		return (new_color3(0, 0, 1));
+	double	t;
+	t_vec3	normal_unit;
+
+	t = hit_sphere(sphere, ray);
+	if (t > 0.0)
+	{
+		normal_unit = vunit(vminus(ray_at(ray, t), sphere->center));
+		return (vmult(new_color3(normal_unit.x + 1, normal_unit.y + 1, normal_unit.z + 1), 0.5));
+	}
 	else
 		return (ray_color(ray));
 }
