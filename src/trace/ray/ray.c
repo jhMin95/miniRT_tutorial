@@ -1,4 +1,5 @@
 #include "../../../include/trace.h"
+#include <math.h>
 
 t_ray	ray(t_point3 orig, t_vec3 dir)
 {
@@ -38,15 +39,12 @@ t_color3	ray_color(t_ray	*r)
 
 t_color3	ray_sphere_color(t_ray *ray, t_sphere *sphere)
 {
-	double	t;
-	t_vec3	normal_unit;
+	t_hit_record	rec;
 
-	t = hit_sphere(sphere, ray);
-	if (t > 0.0)
-	{
-		normal_unit = vunit(vminus(ray_at(ray, t), sphere->center));
-		return (vmult(new_color3(normal_unit.x + 1, normal_unit.y + 1, normal_unit.z + 1), 0.5));
-	}
+	rec.tmin = 0;
+	rec.tmax = INFINITY;
+	if (hit_sphere(sphere, ray, &rec))
+		return (vmult(vplus(rec.normal, new_color3(1, 1, 1)), 0.5));
 	else
 		return (ray_color(ray));
 }
