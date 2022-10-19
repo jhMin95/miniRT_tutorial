@@ -10,7 +10,7 @@ double	hit_sphere(t_sphere *sp, t_ray *ray)
 	double  c;
 	double  discriminant; //판별식
 
-	oc = vminus(sp->center, ray->orig);
+	oc = vminus(ray->orig, sp->center);
 	a = vdot(ray->dir, ray->dir);
 	b = 2.0 * vdot(oc, ray->dir);
 	c = vdot(oc, oc) - sp->radius2;
