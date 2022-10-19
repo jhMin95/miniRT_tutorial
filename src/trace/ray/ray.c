@@ -36,7 +36,7 @@ t_color3	ray_color(t_ray	*r)
 	return (vplus(vmult(new_color3(1, 1, 1), 1.0 - t), vmult(new_color3(0.5, 0.7, 1.0), t)));
 }
 
-t_color3	ray_spere_color(t_ray *ray, t_sphere *sphere)
+t_color3	ray_sphere_color(t_ray *ray, t_sphere *sphere)
 {
 	double	t;
 	t_vec3	normal_unit;

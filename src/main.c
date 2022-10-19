@@ -30,7 +30,7 @@ int	main(void)
             u = (double)i / (canv.width - 1);
             v = (double)j / (canv.height - 1);
 			ray = ray_primary(&cam, u, v);
-			pixel_color = ray_spere_color(&ray, &sp);
+			pixel_color = ray_sphere_color(&ray, &sp);
 			write_color(pixel_color);
         	++i;
         }
