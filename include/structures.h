@@ -11,6 +11,11 @@ typedef struct s_camera	t_camera;
 typedef struct s_canvas	t_canvas;
 typedef	struct s_sphere	t_sphere;
 typedef struct s_hit_record	t_hit_record;
+typedef struct s_object	t_object;
+
+typedef int	t_object_type;
+
+# define SP 0
 
 struct s_vec3
 {
@@ -58,6 +63,13 @@ struct	s_hit_record
 	double		tmax;
 	double		t;
 	bool		front_face;
+};
+
+struct	s_object
+{
+	t_object_type	type;
+	void			*element;
+	void			*next;
 };
 
 #endif

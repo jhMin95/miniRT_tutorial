@@ -34,17 +34,17 @@ t_color3	ray_color(t_ray	*r)
 	double	t;
 
 	t = 0.5 * (r->dir.y + 1.0);
-	return (vplus(vmult(new_color3(1, 1, 1), 1.0 - t), vmult(new_color3(0.5, 0.7, 1.0), t)));
+	return (vplus(vmult(color3(1, 1, 1), 1.0 - t), vmult(color3(0.5, 0.7, 1.0), t)));
 }
 
-t_color3	ray_sphere_color(t_ray *ray, t_sphere *sphere)
+t_color3	ray_sphere_color(t_ray *ray, t_object * world)
 {
 	t_hit_record	rec;
 
 	rec.tmin = 0;
 	rec.tmax = INFINITY;
-	if (hit_sphere(sphere, ray, &rec))
-		return (vmult(vplus(rec.normal, new_color3(1, 1, 1)), 0.5));
+	if (hit(world, ray, &rec))
+		return (vmult(vplus(rec.normal, color3(1, 1, 1)), 0.5));
 	else
 		return (ray_color(ray));
 }
