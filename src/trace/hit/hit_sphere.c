@@ -35,6 +35,7 @@ bool	hit_sphere(t_object *world, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(ray, root);
 	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
+	rec->albedo = world->albedo;
 	set_face_normal(ray, rec);
 	return (true);
 }
